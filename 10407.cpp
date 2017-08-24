@@ -2,6 +2,16 @@
 #include<vector>
 #include<stdlib.h>
 using namespace std;
+int GCD(int a,int b)
+{
+	while(b!=0)
+	{
+		int r = a % b;
+		a = b ;
+		b = r ; 
+	}
+	return a;
+}
 int main()
 {
 	int in;
@@ -15,7 +25,8 @@ int main()
 		{
 			int dif = abs(myV[i]-myV[0]);
 			if(gcd==0) gcd = dif; // set (myV[1]-myV[0]) gcd
-			else while(dif%=gcd) swap(dif,gcd); //gcd
+			//else while(dif%=gcd) swap(dif,gcd); //gcd
+			else gcd = GCD(dif,gcd);
 		}
 		cout << gcd << endl;
 	}
