@@ -1,36 +1,45 @@
 #include<stdio.h>
-#include<math.h>
-bool prime(int n)
+#include<string.h>
+
+int prime(int p)
 {
-	for(int i=2;i<=sqrt(n);i++)
+	int i;
+	for(int i=2;i*i<=p;i++)
 	{
-		if(n%i==0) return false;
+		if(p%i==0) return 0;
 	}
-	return true;
+	
+	return  1;
 }
+
+char t[10000];
+
 int main()
 {
-	int a,b;
-	int table[10000];
-	for(int j=0;j<10000;j++)
-	{
-		table[j]=0;
-	}	
+	int i,a,b,c,num;
+	memset(t,0,sizeof(t));
 	while(scanf("%d %d",&a,&b)!=EOF)
 	{
-		int sum=0;
-		for(int k=a;k<=b;k++)
+		c = 0;
+		for(i=a;i<=b;i++)
 		{
-			if(table[k]==0)//?
-			{
-				int temp = k*k+k+41;
-				if(prime(temp)==true)
-				table[k]=1;//yes
-			}
-			if(table[k]==1) sum++;
+			if(t[i]==0){
+				num = i*i+i+41;
+				if(prime(num)){
+					t[i] = 1;
+					c++;
+				}
+				else 
+				{
+					t[i] = 2;
+				}
+				
+			}else if(t[i]==1)
+				c++;
+			//printf("c: %d\n",c);	
 		}
-		double ans =((double)sum/(b-a+1)*100);//imp.
-		printf("%.2lf\n",ans);
-	}
-	return 0;	
+		printf("c: %d\n",c);	
+		printf("%.2lf\n",((double)c/(b-a+1)*100)+0.00001);
+	}	
+	return 0;
 }
