@@ -1,6 +1,6 @@
 // UVA10220: I Love Big Numbers!
-// Input : ´X¶¥­¼
-// Output: ¶¥­¼«á ¨C¦ì¼Æ¦rªºÁ`©M
+// Input : å¹¾éšŽä¹˜
+// Output: éšŽä¹˜å¾Œ æ¯ä½æ•¸å­—çš„ç¸½å’Œ
 // Ex : 5! => 120 => 1+2+0=3
 // Note: Array store factorial number
  
@@ -12,30 +12,26 @@ int sum[1000+1];
 
 void factorial()
 {
-	//Array[0] = 1;
-	for(int i=0;i<5000;i++) Array[i] = 0;//,printf("%d",Array[i]);
+	for(int i=0;i<5000;i++) Array[i] = 0;
 	Array[0] = 1;
 	for(int i=1;i<=1000;i++) // X1 X2 X3 ... X1000
 	{
 		int rem = 0;
 		for(int j=0;j<5000;j++)
 		{
-			//Array[j] = Array[j-1]*i+ rem;
 			rem = Array[j]*i+ rem;
 			Array[j] = rem%10;
 			rem = rem/10;
 		}
-		//printf("rem:%d\n",rem);
+		
 		for(int k=0;k<5000;k++)
 		{
 			sum[i]+=Array[k]; 
 		}
-		//printf("sum:%d %d\n",i,sum[i]);
 	}
 }
 int main()
 {
-	//freopen("10220.txt","w",stdout);
 	factorial();	
 	int in;
 	while(scanf("%d",&in)==1)
